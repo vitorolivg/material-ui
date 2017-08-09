@@ -7,8 +7,8 @@ function getStyles(props, context) {
 
   return {
     root: {
-      color: props.selected ? tabs.selectedTextColor : tabs.textColor,
-      fontWeight: 500,
+      color: props.selected ? props.selectedTextColor || tabs.selectedTextColor : props.textColor || tabs.textColor,
+      fontWeight: props.selected ? 600 : 500,
       fontSize: 14,
       width: props.width,
       textTransform: 'uppercase',
@@ -67,6 +67,10 @@ class Tab extends Component {
      */
     selected: PropTypes.bool,
     /**
+     * Override the selected tab text color.
+     */
+    selectedTextColor: PropTypes.string,
+    /**
      * Override the inline-styles of the root element.
      */
     style: PropTypes.object,
@@ -74,6 +78,10 @@ class Tab extends Component {
      * If value prop passed to Tabs component, this value prop is also required.
      * It assigns a value to the tab so that it can be selected by the Tabs.
      */
+     /**
+      * Override the tab text color.
+      */
+    textColor: PropTypes.string,
     value: PropTypes.any,
     /**
      * @ignore
